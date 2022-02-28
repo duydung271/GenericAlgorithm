@@ -1,6 +1,6 @@
 function matrix_cossover(mat_a, mat_b){
     let len =mat_a.length
-    let crossover_point = randomInt(len-1)+1
+    let crossover_point = randomInt(len)
     let child_a = new Array()
     let child_b = new Array()
     for (let i =0;i<crossover_point;++i){
@@ -68,7 +68,7 @@ function matrix_mute(mat, rate){
     let min = getMin(mat)
     let sigma = (max-min)/max
     let num_sample = Math.floor(len*rate)
-    if (num_sample==0) num_sample =1
+    if (num_sample==0) num_sample = 1
 
     while(num_sample>0){
         let idx = randomInt(len)
@@ -118,22 +118,34 @@ function mute(agent, rate){
 // child_p[1] = mute(child_p[1],0.1)
 // console.log(child_p[0].predict(x), child_p[1].predict(x))
 
+// function selection(weights){
+//     let idx_par1 = 0
+//     let idx_par2 = 1
+//     if (weights[idx_par1]<weights[idx_par2]){
+//         idx_par1 =1
+//         idx_par2 =0
+//     }
+//     for (let i =2;i<weights.length;++i){
+//         if (weights[idx_par1]<=weights[i]){
+//             idx_par2 = idx_par1
+//             idx_par1 = i
+//         }else if (weights[idx_par2]<weights[i]){
+//             idx_par2 = i
+//         }
+//     }
+//     return [idx_par1, idx_par2]
+// }
+
+
 function selection(weights){
-    let idx_par1 = 0
-    let idx_par2 = 1
-    if (weights[idx_par1]<weights[idx_par2]){
-        idx_par1 =1
-        idx_par2 =0
+    ft = weights.map((value,index) => [value,index]);
+    ft = ft.sort((x,y)=>y[0]-x[0])
+    selected = []
+    for (let i =0;i<4;i++){
+        selected.push(ft[i][1])
     }
-    for (let i =2;i<weights.length;++i){
-        if (weights[idx_par1]<=weights[i]){
-            idx_par2 = idx_par1
-            idx_par1 = i
-        }else if (weights[idx_par2]<weights[i]){
-            idx_par2 = i
-        }
-    }
-    return [idx_par1, idx_par2]
+    return selected
+    
 }
 
 // let x = [4,6,3,4,5]

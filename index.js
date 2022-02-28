@@ -60,7 +60,6 @@ function getFeature(bot){
     return {
         distance_x: min_distance/1000,
         distance_h: (bot.position.y - couplePipe.position.y)/1000,
-        velocity: bot.velocity.y/100
     }
 }
 
@@ -118,6 +117,8 @@ function animate() {
         c.fillText(`Generation : ${generation_th}`, 100,100)
         c.font = '20px serif';
         c.fillText(`Population : ${totals_bot}`, 150,125)
+        c.font = '22px serif';
+        c.fillText(`Best Score ${best_score.toFixed(1)}`, 150,150)
 
         draw_fitness()
 
@@ -132,6 +133,7 @@ function animate() {
     
 }
 
+let best_score = 0
 function draw_fitness(){
     c.fillStyle = 'black';
     c.font = '20px serif';
@@ -140,6 +142,7 @@ function draw_fitness(){
     for (let i =0;i<bots.length;++i){
         c.fillStyle = bots[i].color;
         c.font = '20px serif';
+        best_score = Math.max(best_score,bots[i].fitness)
         c.fillText(` ${bots[i].fitness.toFixed(1)}`, cWidth-200,145+i*50)
         c.fillRect(cWidth-250,125+i*50,32,32)
     }

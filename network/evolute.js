@@ -11,15 +11,20 @@ function next_generation(){
     let fitness = get_fitness()
     idx_par = selection(fitness)
     
+    // for (let i=0;i<idx_par.length;++i){
+    //     brains.push(bots[idx_par[i]].brain)
+    // }
     brains.push(bots[idx_par[0]].brain)
-    brains.push(bots[idx_par[1]].brain)
+    
 
-    for (let i =0;i< NUM_BOT/2-1;++i){
-        let child = crossover(bots[idx_par[0]].brain,bots[idx_par[1]].brain)
-        child[0] = mute(child[0],0.1)
-        child[1] = mute(child[1],0.1)
-        brains.push(child[0])
-        brains.push(child[1])
+    for (let i =0;i<idx_par.length;++i){
+        for (let j =i+1;j<idx_par.length;++j){
+            let child = crossover(bots[idx_par[i]].brain,bots[idx_par[j]].brain)
+            child[0] = mute(child[0],0.1)
+            child[1] = mute(child[1],0.1)
+            brains.push(child[0])
+            brains.push(child[1])
+        }
     }
 
     for (let i =0;i<bots.length;++i){

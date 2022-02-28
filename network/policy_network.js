@@ -29,8 +29,7 @@ class Policy_Network{
     //x2: top_left bot - mid_y couple pipe/1000
     constructor(){
         this.layers=[
-            new Linear(3,3),
-            new Linear(3,6),
+            new Linear(2,6),
             new Linear(6,1)
         ]
     }

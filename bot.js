@@ -46,7 +46,7 @@ class Bot extends Entity{
             this.velocity.y = Math.abs(this.velocity.y)
         }
         this.wait_think++
-        if (this.wait_think%8==0){
+        if (this.wait_think%4==0){
             let idea = this.think()
             if (idea && !this.wait_realese){
                 this.velocity.y = -this.jump_force
@@ -67,7 +67,7 @@ class Bot extends Entity{
     think(){
         // return KeySpace.isPress
         let ft = getFeature(this)
-        let idea = this.brain.predict([ft.distance_x,ft.distance_h,ft.velocity])
+        let idea = this.brain.predict([ft.distance_x,ft.distance_h])
         return idea >=0.5
     }
 
