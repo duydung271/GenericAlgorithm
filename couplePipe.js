@@ -1,7 +1,7 @@
 class CouplePipe extends Entity{
     constructor(x,y) {
         super(x, y)
-        this.pipe_gap = 200
+        this.pipe_gap = GAP_PIPE
         this.start_position ={
             x: x,
             y: y
@@ -37,14 +37,14 @@ class CouplePipe extends Entity{
     }
 
     next_point(){
-        if (index_fartest_pipe >= totals_couple_pipe){
+        if (index_fartest_pipe >= NUM_PIPE){
             index_fartest_pipe = 0
         }
 
         let pos_x = couplePipes[index_fartest_pipe++].position.x
         
         let position = {
-            x: pos_x+space_pipe,
+            x: pos_x+SPACE_PIPE,
             y: cHeight/2 + random(-150,150)
         }
         this.position = position

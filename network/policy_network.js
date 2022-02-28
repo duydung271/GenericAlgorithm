@@ -5,7 +5,7 @@ class Linear{
     //output: [0.9,0.4,0.5]
     constructor(input_shape, ouput_shape){
         this.shape = [input_shape, ouput_shape]
-        this.w = [ ...Array(input_shape*ouput_shape).keys() ].map((i) => Math.random()/10)
+        this.w = [ ...Array(input_shape*ouput_shape).keys() ].map((i) => Math.random())
         this.b = [ ...Array(ouput_shape).keys() ].map((i) => Math.random())
     }
 
@@ -28,13 +28,17 @@ class Policy_Network{
     //x1: Khoang cach tu top_left cua bot, den pos_right cua pipe/1000
     //x2: top_left bot - mid_y couple pipe/1000
     constructor(){
-        this.linear1 = new Linear(2,6)
-        this.linear2 = new Linear(6,1)
+        this.layers=[
+            new Linear(3,3),
+            new Linear(3,6),
+            new Linear(6,1)
+        ]
     }
-
     predict(x){
-        let z = this.linear1.predict(x)
-        let y = this.linear2.predict(z)
+        let y = x
+        for (let i =0 ;i< this.layers.length;++i){
+            y = this.layers[i].predict(y)
+        }
         return y[0]
     }
 }

@@ -42,15 +42,16 @@ function layer_cossover(layer_a, layer_b){
 // console.log(child[0].predict(x),child[1].predict(x))
 
 function crossover(parent_a, parent_b){
+    let len = parent_a.layers.length
     let child_a = new Policy_Network()
     let child_b = new Policy_Network()
-    layer_child_1 = layer_cossover(parent_a.linear1,parent_b.linear1)
-    layer_child_2 = layer_cossover(parent_a.linear2,parent_b.linear2)
-    child_a.linear1 = layer_child_1[0]
-    child_b.linear1 = layer_child_1[1]
 
-    child_a.linear2 = layer_child_2[0]
-    child_b.linear2 = layer_child_2[1]
+    for (let i =0;i<len;++i){
+        layer_child = layer_cossover(parent_a.layers[i],parent_b.layers[i])
+        child_a.layers[i] = layer_child[0]
+        child_b.layers[i] = layer_child[1]
+    }
+
     return [child_a, child_b]
 }
 
@@ -101,8 +102,9 @@ function layer_mute(layer,rate){
 
 
 function mute(agent, rate){
-    agent.linear1 = layer_mute(agent.linear1, rate)
-    agent.linear2 = layer_mute(agent.linear2, rate)
+    for (let i =0 ;i<agent.layers.length;++i){
+        agent.layers[i] = layer_mute(agent.layers[i], rate)
+    }
     return agent
 }
 
