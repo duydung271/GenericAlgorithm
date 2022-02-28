@@ -39,3 +39,5 @@ Với 3 toán tử của generic algorithm:
 1. selection
 2. crossover
 3. mutation
+
+https://github.com/duydung271/GenericAlgorithm/blob/main/demo/ga_demo.mp4
