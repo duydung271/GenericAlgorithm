@@ -23,7 +23,7 @@ Input:
 2. x2 khoảng cách đến tâm pipe gần nhất
 
 
-![alt](\demo\demo1.png)
+![alt](https://github.com/duydung271/GenericAlgorithm/blob/main/demo/demo1.png)
 
 
 Ouput: Dự đoán hành động flap. Nếu lớn hơn hoặc bằng 0.5 thì flap
